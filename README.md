@@ -3,7 +3,7 @@
 [![GIT](https://img.shields.io/badge/GIT-2.24.1-lightgrey.svg?style=flat-square&logo=GIT&color=F05032)](https://git-scm.com/)
 [![macOS](https://img.shields.io/badge/macOS-10.15.4-lightgrey.svg?style=flat-square&logo=Apple&color=999999)](https://www.apple.com/uk/macos/catalina/)
 
-![Oh My Git](https://media.giphy.com/media/MuTenSRsJ7TQQ/source.gif)
+![Oh My Git](https://media.giphy.com/media/MuTenSRsJ7TQQ/giphy.gif)
 
 # Introduction
 
