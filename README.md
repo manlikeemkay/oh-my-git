@@ -3,13 +3,21 @@
 [![GIT](https://img.shields.io/badge/GIT-2.24.1-lightgrey.svg?style=flat-square&logo=GIT&color=F05032)](https://git-scm.com/)
 [![macOS](https://img.shields.io/badge/macOS-10.15.4-lightgrey.svg?style=flat-square&logo=Apple&color=999999)](https://www.apple.com/uk/macos/catalina/)
 
-![Oh My Git](https://media.giphy.com/media/MBfo31prDvKHf6uFyl/giphy.gif)
+![Oh My Git](https://media.giphy.com/media/MuTenSRsJ7TQQ/source.gif)
 
 # Introduction
 
 Welcome to my super useful collection of all things GIT.
 
 These are commands and scripts that I've collected over years of using GIT when I've found myself in situations I don't quite know how to get out of.
+
+### Delete a remote tag
+
+```
+git push --delete origin tagname
+```
+
+###
 
 ## 💡 Contributing
 
@@ -20,6 +28,8 @@ These are commands and scripts that I've collected over years of using GIT when 
 5. Submit a pull request!
 
 ## 📚 Acknowledgements
+
+Delete a remote tag: https://stackoverflow.com/a/5480292.
 
 Metadata badges: https://shields.io/.
 
