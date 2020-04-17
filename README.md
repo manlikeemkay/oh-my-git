@@ -51,6 +51,14 @@ Once complete, check your git history and if you're happy run
 git push --force --tags origin 'refs/heads/*'
 ```
 
+### 3. Move uncommitted changes from current branch to another branch
+
+```
+git stash
+git checkout my-branch
+git stash pop
+```
+
 ## 💡 Contributing
 
 1. Fork this repository.
