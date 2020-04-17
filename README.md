@@ -11,13 +11,45 @@ Welcome to my super useful collection of all things GIT.
 
 These are commands and scripts that I've collected over years of using GIT when I've found myself in situations I don't quite know how to get out of.
 
-### Delete a remote tag
+### 1. Delete a remote tag
 
 ```
 git push --delete origin tagname
 ```
 
-###
+### 2. Overwrite GIT commiter and author information
+
+In your terminal window enter the following and update the `OLD_EMAIL`, `CORRECT_NAME` and `CORRECT_EMAIL` values.
+
+```
+#!/bin/sh
+
+git filter-branch -f --env-filter '
+
+OLD_EMAIL="your-old-email@example.com"
+CORRECT_NAME="Your Correct Name"
+CORRECT_EMAIL="your-correct-email@example.com"
+
+if [ "$GIT_COMMITTER_EMAIL" = "$OLD_EMAIL" ]
+then
+export GIT_COMMITTER_NAME="$CORRECT_NAME"
+export GIT_COMMITTER_EMAIL="$CORRECT_EMAIL"
+fi
+
+if [ "$GIT_AUTHOR_EMAIL" = "$OLD_EMAIL" ]
+then
+export GIT_AUTHOR_NAME="$CORRECT_NAME"
+export GIT_AUTHOR_EMAIL="$CORRECT_EMAIL"
+fi
+
+' --tag-name-filter cat -- --branches --tags
+```
+
+Once complete, check your git history and if you're happy run
+
+```
+git push --force --tags origin 'refs/heads/*'
+```
 
 ## 💡 Contributing
 
@@ -28,6 +60,8 @@ git push --delete origin tagname
 5. Submit a pull request!
 
 ## 📚 Acknowledgements
+
+Changing author information: https://help.github.com/en/github/using-git/changing-author-info.
 
 Delete a remote tag: https://stackoverflow.com/a/5480292.
 
