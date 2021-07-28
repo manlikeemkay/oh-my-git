@@ -1,63 +1,61 @@
 # 😱 Oh My Git
 
 [![GIT](https://img.shields.io/badge/GIT-2.24.1-lightgrey.svg?style=flat-square&logo=GIT&color=F05032)](https://git-scm.com/)
-[![macOS](https://img.shields.io/badge/macOS-10.15.4-lightgrey.svg?style=flat-square&logo=Apple&color=999999)](https://www.apple.com/uk/macos/catalina/)
+[![macOS](https://img.shields.io/badge/macOS-11.4-lightgrey.svg?style=flat-square&logo=Apple&color=999999)](https://www.apple.com/uk/macos/big-sur/)
 
 ![Oh My Git](https://media.giphy.com/media/MuTenSRsJ7TQQ/giphy.gif)
 
-# Introduction
+## Introduction
 
 Welcome to my super useful collection of all things GIT.
 
 These are commands and scripts that I've collected over years of using GIT when I've found myself in situations I don't quite know how to get out of.
 
-### 1. Delete a remote tag
+1. Delete a remote tag
 
-```
-git push --delete origin tagname
-```
+    ```shell
+    git push --delete origin ${tag-name}
+    ```
 
-### 2. Overwrite GIT commiter and author information
+2. Overwrite GIT commiter and author information
 
-In your terminal window enter the following and update the `OLD_EMAIL`, `CORRECT_NAME` and `CORRECT_EMAIL` values.
+    In your terminal window enter the following and update the `OLD_EMAIL`, `CORRECT_NAME` and `CORRECT_EMAIL` values.
 
-```
-#!/bin/sh
+    ```shell
+    git filter-branch -f --env-filter '
 
-git filter-branch -f --env-filter '
+    OLD_EMAIL="your-old-email@example.com"
+    CORRECT_NAME="Your Correct Name"
+    CORRECT_EMAIL="your-correct-email@example.com"
 
-OLD_EMAIL="your-old-email@example.com"
-CORRECT_NAME="Your Correct Name"
-CORRECT_EMAIL="your-correct-email@example.com"
+    if [ "$GIT_COMMITTER_EMAIL" = "$OLD_EMAIL" ]
+    then
+    export GIT_COMMITTER_NAME="$CORRECT_NAME"
+    export GIT_COMMITTER_EMAIL="$CORRECT_EMAIL"
+    fi
 
-if [ "$GIT_COMMITTER_EMAIL" = "$OLD_EMAIL" ]
-then
-export GIT_COMMITTER_NAME="$CORRECT_NAME"
-export GIT_COMMITTER_EMAIL="$CORRECT_EMAIL"
-fi
+    if [ "$GIT_AUTHOR_EMAIL" = "$OLD_EMAIL" ]
+    then
+    export GIT_AUTHOR_NAME="$CORRECT_NAME"
+    export GIT_AUTHOR_EMAIL="$CORRECT_EMAIL"
+    fi
 
-if [ "$GIT_AUTHOR_EMAIL" = "$OLD_EMAIL" ]
-then
-export GIT_AUTHOR_NAME="$CORRECT_NAME"
-export GIT_AUTHOR_EMAIL="$CORRECT_EMAIL"
-fi
+    ' --tag-name-filter cat -- --branches --tags
+    ```
 
-' --tag-name-filter cat -- --branches --tags
-```
+    Once complete, check your git history and if you're happy run
 
-Once complete, check your git history and if you're happy run
+    ```shell
+    git push --force --tags origin 'refs/heads/*'
+    ```
 
-```
-git push --force --tags origin 'refs/heads/*'
-```
+3. Move uncommitted changes from current branch to another branch
 
-### 3. Move uncommitted changes from current branch to another branch
-
-```
-git stash
-git checkout my-branch
-git stash pop
-```
+    ```shell
+    git stash
+    git checkout my-branch
+    git stash pop
+    ```
 
 ## 💡 Contributing
 
@@ -69,13 +67,13 @@ git stash pop
 
 ## 📚 Acknowledgements
 
-Changing author information: https://help.github.com/en/github/using-git/changing-author-info.
+Changing author information: <https://help.github.com/en/github/using-git/changing-author-info>.
 
-Delete a remote tag: https://stackoverflow.com/a/5480292.
+Delete a remote tag: <https://stackoverflow.com/a/5480292>.
 
-Metadata badges: https://shields.io/.
+Metadata badges: <https://shields.io/>.
 
-The MIT License: https://opensource.org/licenses/MIT.
+The MIT License: <https://opensource.org/licenses/MIT>.
 
 ## ⚖️ License (MIT)
 
