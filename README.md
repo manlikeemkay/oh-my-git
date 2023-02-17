@@ -11,52 +11,6 @@ Welcome to my super useful collection of all things GIT.
 
 These are commands and scripts that I've collected over years of using GIT when I've found myself in situations I don't quite know how to get out of.
 
-1. Delete a remote tag
-
-    ```shell
-    git push --delete origin ${tag-name}
-    ```
-
-2. Overwrite GIT commiter and author information
-
-    In your terminal window enter the following and update the `OLD_EMAIL`, `CORRECT_NAME` and `CORRECT_EMAIL` values.
-
-    ```shell
-    git filter-branch -f --env-filter '
-
-    OLD_EMAIL="your-old-email@example.com"
-    CORRECT_NAME="Your Correct Name"
-    CORRECT_EMAIL="your-correct-email@example.com"
-
-    if [ "$GIT_COMMITTER_EMAIL" = "$OLD_EMAIL" ]
-    then
-    export GIT_COMMITTER_NAME="$CORRECT_NAME"
-    export GIT_COMMITTER_EMAIL="$CORRECT_EMAIL"
-    fi
-
-    if [ "$GIT_AUTHOR_EMAIL" = "$OLD_EMAIL" ]
-    then
-    export GIT_AUTHOR_NAME="$CORRECT_NAME"
-    export GIT_AUTHOR_EMAIL="$CORRECT_EMAIL"
-    fi
-
-    ' --tag-name-filter cat -- --branches --tags
-    ```
-
-    Once complete, check your git history and if you're happy run
-
-    ```shell
-    git push --force --tags origin 'refs/heads/*'
-    ```
-
-3. Move uncommitted changes from current branch to another branch
-
-    ```shell
-    git stash
-    git checkout my-branch
-    git stash pop
-    ```
-
 ## 💡 Contributing
 
 1. Fork this repository.
