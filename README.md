@@ -1,11 +1,14 @@
-# 😱 Oh My Git — The Developer Cheat Sheet
+<!-- markdownlint-configure-file {"MD033": {"allowed_elements": ["img", "a"]}} -->
+
+# 😱 Oh My Git: The Developer Cheat Sheet
 
 [![Git 2.35+](https://img.shields.io/badge/Git-2.35%2B-F05032?style=flat-square&logo=git&logoColor=white)](https://git-scm.com/)
 [![macOS](https://img.shields.io/badge/macOS-999999?style=flat-square&logo=apple&logoColor=white)](https://www.apple.com/macos/)
 [![Bash](https://img.shields.io/badge/Bash-4EAA25?style=flat-square&logo=gnubash&logoColor=white)](https://www.gnu.org/software/bash/)
-[![Zsh](https://img.shields.io/badge/Zsh-F15A24?style=flat-square&logo=zsh&logoColor=white)](https://www.zsh.org/)
+[![ZSH](https://img.shields.io/badge/ZSH-F15A24?style=flat-square&logo=zsh&logoColor=white)](https://www.zsh.org/)
 
-![Oh My Git](https://media.giphy.com/media/MuTenSRsJ7TQQ/giphy.gif)
+<img src="https://media.giphy.com/media/MuTenSRsJ7TQQ/giphy.gif"
+  alt="Oh My Git" width="100%">
 
 - [🎛️ Setup](#setup)
 - [⚡ Flow](#flow)
@@ -14,9 +17,12 @@
 - [🛟 Rescue](#rescue)
 - [🚀 Ship](#ship)
 
-> **📌 Before You Paste:** Bash/Zsh examples. Replace sample paths, refs, and hashes. Start with `git status`; run recipes independently, one step at a time.
+> **📌 Before You Paste:** Bash/Zsh examples. Replace sample paths, refs, and
+> hashes. Start with `git status`; run recipes independently, one step at a
+> time.
 >
-> **🔧 Compatibility:** `switch` / `restore`: Git 2.23+. `zdiff3`: 2.35+. Config examples affect this repo; add `--global` for all repos.
+> **🔧 Compatibility:** `switch` / `restore`: Git 2.23+. `zdiff3`: 2.35+.
+> Config examples affect this repo; add `--global` for all repos.
 >
 > **Legend:** 💎 Hidden gem · ⚠️ Check the impact · 📚 Official docs
 
@@ -26,7 +32,7 @@
 
 ### 🎨 Your Command Palette
 
-**Set Once → Use Daily**
+#### Set Once → Use Daily
 
 ```sh
 git config alias.st 'status --short --branch'
@@ -56,19 +62,26 @@ git config merge.conflictStyle zdiff3
 
 Applies to new conflicts; existing markers stay as they are.
 
-📚 [Conflict styles](https://git-scm.com/docs/git-config#Documentation/git-config.txt-mergeconflictStyle).
+📚
+[Conflict styles](https://git-scm.com/docs/git-config#Documentation/git-config.txt-mergeconflictStyle)
+.
 
 ### 📊 Branch Dashboard
 
+<!-- Keep the Git format string intact for copying. -->
+<!-- markdownlint-disable MD013 -->
 ```sh
 git for-each-ref --sort=-committerdate \
   --format='%(align:32)%(refname:short)%(end) %(align:18)%(committerdate:relative)%(end) %(authorname)' \
   refs/remotes/origin/
 ```
+<!-- markdownlint-enable MD013 -->
 
-**Output:** branch → tip age → author. Newest commits first; no `column` dependency.
+**Output:** branch → tip age → author. Newest commits first; no `column`
+dependency.
 
-⚠️ Age = tip commit age. Run `git fetch origin` to refresh refs; `origin/HEAD` may appear.
+⚠️ Age = tip commit age. Run `git fetch origin` to refresh refs; `origin/HEAD`
+may appear.
 
 📚 [Ref sorting and formatting](https://git-scm.com/docs/git-for-each-ref).
 
@@ -86,7 +99,8 @@ git worktree add -b hotfix/login ../project-hotfix origin/main
 git worktree list
 ```
 
-💡 Work in `../project-hotfix`; your original changes stay put. History is shared; files and indexes are separate. Install dependencies there if needed.
+💡 Work in `../project-hotfix`; your original changes stay put. History is
+shared; files and indexes are separate. Install dependencies there if needed.
 
 **Clean Up When The Worktree Is Clean:**
 
@@ -94,7 +108,8 @@ git worktree list
 git worktree remove ../project-hotfix
 ```
 
-⚠️ Removal keeps the branch. The same branch normally cannot be checked out twice.
+⚠️ Removal keeps the branch. The same branch normally cannot be checked out
+twice.
 
 📚 [Git worktrees](https://git-scm.com/docs/git-worktree).
 
@@ -107,7 +122,9 @@ git stash apply 'stash@{0}'
 git status
 ```
 
-⚠️ Confirm stash creation and branch switch before applying. `-u` includes untracked, not ignored files. `apply` keeps the stash; `--index` also restores staging state.
+⚠️ Confirm stash creation and branch switch before applying. `-u` includes
+untracked, not ignored files. `apply` keeps the stash; `--index` also restores
+staging state.
 
 **After Review:** check `git stash list`, then drop the correct entry.
 
@@ -115,7 +132,8 @@ git status
 git stash drop 'stash@{0}'
 ```
 
-💎 Too many conflicts? `git stash branch rescue/wip 'stash@{0}'` applies on the original base in a new branch. Drops the stash on success.
+💎 Too many conflicts? `git stash branch rescue/wip 'stash@{0}'` applies on the
+original base in a new branch. Drops the stash on success.
 
 📚 [Stashing, applying, and stash branches](https://git-scm.com/docs/git-stash).
 
@@ -151,7 +169,8 @@ git add -p -- src/cart.ts
 git diff --cached
 ```
 
-**Keys:** `y` stage · `n` skip · `s` split · `e` edit patch. Other edits stay in your file.
+**Keys:** `y` stage · `n` skip · `s` split · `e` edit patch. Other edits stay in
+your file.
 
 💡 New file? Run `git add -N -- src/new-file.ts` first. Review the staged patch.
 
@@ -168,15 +187,19 @@ git commit --fixup=abc1234
 git rebase -i --autosquash origin/main
 ```
 
-💡 Replace `abc1234` with a commit in the rebase range. Autosquash folds in the fix. Start clean; inspect the todo list.
+💡 Replace `abc1234` with a commit in the rebase range. Autosquash folds in the
+fix. Start clean; inspect the todo list.
 
-⚠️ **Rewrites history.** Coordinate shared commits. Resolve + stage → `git rebase --continue`. Back out → `git rebase --abort`.
+⚠️ **Rewrites history.** Coordinate shared commits. Resolve + stage →
+`git rebase --continue`. Back out → `git rebase --abort`.
 
-📚 [Fixup commits](https://git-scm.com/docs/git-commit), [autosquash](https://git-scm.com/docs/git-rebase).
+📚 [Fixup commits](https://git-scm.com/docs/git-commit),
+[autosquash](https://git-scm.com/docs/git-rebase).
 
 ### 💎 Review Your Rebase
 
-**Before Rebase:** clean working tree, linear feature history, fresh backup name.
+**Before Rebase:** clean working tree, linear feature history, fresh backup
+name.
 
 ```sh
 git branch backup/before-rebase
@@ -196,7 +219,8 @@ git rebase origin/main
 git range-diff OLD_BASE_SHA..backup/before-rebase origin/main..HEAD
 ```
 
-💎 Compares commit patches and messages across the rewrite. Great for checking conflict resolutions. Keep the backup until satisfied.
+💎 Compares commit patches and messages across the rewrite. Great for checking
+conflict resolutions. Keep the backup until satisfied.
 
 📚 [Comparing commit ranges](https://git-scm.com/docs/git-range-diff).
 
@@ -229,7 +253,8 @@ git log -p -S 'calculateDiscount' -- src/
 git log -p -G 'timeout\s*=' -- src/
 ```
 
-**`-S`** → string occurrence count changed. **`-G`** → added/removed lines match a regex. Add `--all` to search all refs.
+**`-S`** → string occurrence count changed. **`-G`** → added/removed lines match
+a regex. Add `--all` to search all refs.
 
 📚 [Git log's pickaxe options](https://git-scm.com/docs/git-log).
 
@@ -239,7 +264,8 @@ git log -p -G 'timeout\s*=' -- src/
 git log -L 40,80:src/cart.ts
 ```
 
-💡 Shows patches for that line range through history. Use line numbers valid in the current file.
+💡 Shows patches for that line range through history. Use line numbers valid in
+the current file.
 
 📚 [Line-range history](https://git-scm.com/docs/git-log).
 
@@ -251,7 +277,8 @@ Replace `abc1234` with the formatting commit:
 git blame --ignore-rev abc1234 -- src/cart.ts
 ```
 
-**Team Setup:** commit `.git-blame-ignore-revs` with one full hash per line, then opt in:
+**Team Setup:** commit `.git-blame-ignore-revs` with one full hash per line,
+then opt in:
 
 ```sh
 git config blame.ignoreRevsFile .git-blame-ignore-revs
@@ -269,7 +296,8 @@ git check-ignore -v -- build/output.js
 
 **Output:** rule file → line number → pattern. No match = no output, exit `1`.
 
-💡 Already tracked? Add `--no-index` to inspect rules. Ignore rules do not untrack files.
+💡 Already tracked? Add `--no-index` to inspect rules. Ignore rules do not
+untrack files.
 
 📚 [Debugging ignore rules](https://git-scm.com/docs/git-check-ignore).
 
@@ -286,7 +314,8 @@ git bisect run ./scripts/check-regression.sh
 
 **Script Exit Codes:** `0` good · `1`–`127` bad, except `125` skip.
 
-⚠️ Use an executable script testing the checked-out revision. Validate its environment: missing commands can return `127`. Skips can leave ambiguity.
+⚠️ Use an executable script testing the checked-out revision. Validate its
+environment: missing commands can return `127`. Skips can leave ambiguity.
 
 **Record The Result, Then Return:**
 
@@ -313,7 +342,8 @@ git show abc1234
 git branch rescue/recovered-work abc1234
 ```
 
-⚠️ Leaves current files alone. Reflogs are local, expire, and cannot recover unrecorded edits.
+⚠️ Leaves current files alone. Reflogs are local, expire, and cannot recover
+unrecorded edits.
 
 📚 [Reference logs](https://git-scm.com/docs/git-reflog).
 
@@ -323,9 +353,11 @@ git branch rescue/recovered-work abc1234
 git restore --staged -- src/cart.ts
 ```
 
-💡 Keeps your working edits; resets staging to `HEAD`. Requires an existing commit.
+💡 Keeps your working edits; resets staging to `HEAD`. Requires an existing
+commit.
 
-⚠️ Without `--staged`, `restore` overwrites unstaged edits with the index version.
+⚠️ Without `--staged`, `restore` overwrites unstaged edits with the index
+version.
 
 📚 [Restore sources and destinations](https://git-scm.com/docs/git-restore).
 
@@ -344,7 +376,8 @@ git restore --source=origin/main --worktree -- src/cart.ts
 git diff -- src/cart.ts
 ```
 
-⚠️ **Overwrites local file content.** Save edits first. Review and stage the replacement yourself.
+⚠️ **Overwrites local file content.** Save edits first. Review and stage the
+replacement yourself.
 
 📚 [Restoring from another tree](https://git-scm.com/docs/git-restore).
 
@@ -361,7 +394,8 @@ git bundle verify ../project-backup.bundle
 git clone ../project-backup.bundle ../project-restored
 ```
 
-⚠️ Git history only. Back up uncommitted files, config, hooks, and external LFS payloads separately.
+⚠️ Git history only. Back up uncommitted files, config, hooks, and external LFS
+payloads separately.
 
 📚 [Git bundles and their limitations](https://git-scm.com/docs/git-bundle).
 
@@ -384,7 +418,8 @@ git config user.email 'your-new-email@example.com'
 git commit --amend --no-edit --reset-author
 ```
 
-⚠️ **Rewrites the commit**, includes staged changes, and resets author + author date to you/now. Use only for your own work.
+⚠️ **Rewrites the commit**, includes staged changes, and resets author + author
+date to you/now. Use only for your own work.
 
 **Historical Display:** add to `.mailmap` at the repo root.
 
@@ -392,11 +427,17 @@ git commit --amend --no-edit --reset-author
 Your Correct Name <your-new-email@example.com> <your-old-email@example.com>
 ```
 
-💡 Check with `git log --use-mailmap`; commit the mapping to share it. Original identities remain in commit objects.
+💡 Check with `git log --use-mailmap`; commit the mapping to share it. Original
+identities remain in commit objects.
 
-📚 [Identity configuration](https://git-scm.com/docs/git-config), [amending authorship](https://git-scm.com/docs/git-commit), [mailmap format](https://git-scm.com/docs/gitmailmap).
+📚 [Identity configuration](https://git-scm.com/docs/git-config),
+[amending authorship](https://git-scm.com/docs/git-commit),
+[mailmap format](https://git-scm.com/docs/gitmailmap).
 
-⚠️ **Full Identity Rewrite?** Plan a backed-up, coordinated migration. Git discourages `filter-branch`; see its [official alternative](https://git-scm.com/docs/git-filter-branch#_warning), `git-filter-repo` (separate install).
+⚠️ **Full Identity Rewrite?** Plan a backed-up, coordinated migration. Git
+discourages `filter-branch`; see its
+[official alternative](https://git-scm.com/docs/git-filter-branch#_warning),
+`git-filter-repo` (separate install).
 
 ### 🔐 Push With An Explicit Lease
 
@@ -407,7 +448,8 @@ git fetch origin
 expected_tip=$(git rev-parse refs/remotes/origin/feature/my-work)
 ```
 
-Inspect fetched history; preserve the intended work. Rewrite and review, then in the **same shell**:
+Inspect fetched history; preserve the intended work. Rewrite and review, then in
+the **same shell**:
 
 ```sh
 git push \
@@ -415,7 +457,9 @@ git push \
   origin HEAD:refs/heads/feature/my-work
 ```
 
-⚠️ **Changes remote history.** Rejects if the remote tip changed; background fetches cannot refresh this explicit expectation. A lease does not validate your rewrite. Rejected? Fetch and inspect.
+⚠️ **Changes remote history.** Rejects if the remote tip changed; background
+fetches cannot refresh this explicit expectation. A lease does not validate your
+rewrite. Rejected? Fetch and inspect.
 
 📚 [Explicit force-with-lease semantics](https://git-scm.com/docs/git-push).
 
