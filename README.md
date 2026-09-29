@@ -5,9 +5,12 @@
 
 ![Oh My Git](https://media.giphy.com/media/MuTenSRsJ7TQQ/giphy.gif)
 
-**Less friction. Better commits. A few “Git can do that?” moments.**
-
-[🎛️ Setup](#setup) · [⚡ Flow](#flow) · [✨ Commits](#commits) · [🔎 Investigate](#investigate) · [🛟 Rescue](#rescue) · [🚀 Ship](#ship)
+- [🎛️ Setup](#setup)
+- [⚡ Flow](#flow)
+- [✨ Commits](#commits)
+- [🔎 Investigate](#investigate)
+- [🛟 Rescue](#rescue)
+- [🚀 Ship](#ship)
 
 > **📌 Before You Paste:** Bash/Zsh examples. Replace sample paths, refs, and hashes. Start with `git status`; run recipes independently, one step at a time.
 >
@@ -19,7 +22,7 @@
 
 ## 🎛️ Tune Your Terminal
 
-### 🎛️ Your Command Palette
+### 🎨 Your Command Palette
 
 **Set Once → Use Daily**
 
