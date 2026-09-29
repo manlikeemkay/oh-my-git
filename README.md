@@ -1,7 +1,9 @@
 # 😱 Oh My Git — The Developer Cheat Sheet
 
-[![GIT](https://img.shields.io/badge/GIT-2.24.1-lightgrey.svg?style=flat-square&logo=GIT&color=F05032)](https://git-scm.com/)
-[![macOS](https://img.shields.io/badge/macOS-11.4-lightgrey.svg?style=flat-square&logo=Apple&color=999999)](https://www.apple.com/uk/macos/big-sur/)
+[![Git 2.35+](https://img.shields.io/badge/Git-2.35%2B-F05032?style=flat-square&logo=git&logoColor=white)](https://git-scm.com/)
+[![macOS](https://img.shields.io/badge/macOS-999999?style=flat-square&logo=apple&logoColor=white)](https://www.apple.com/macos/)
+[![Bash](https://img.shields.io/badge/Bash-4EAA25?style=flat-square&logo=gnubash&logoColor=white)](https://www.gnu.org/software/bash/)
+[![Zsh](https://img.shields.io/badge/Zsh-F15A24?style=flat-square&logo=zsh&logoColor=white)](https://www.zsh.org/)
 
 ![Oh My Git](https://media.giphy.com/media/MuTenSRsJ7TQQ/giphy.gif)
 
