@@ -11,6 +11,7 @@
   alt="Oh My Git" width="100%">
 
 - [🎛️ Setup](#setup)
+- [🕰️ Find Stale Branches](#stale-branches)
 - [⚡ Flow](#flow)
 - [✨ Commits](#commits)
 - [🔎 Investigate](#investigate)
@@ -66,22 +67,43 @@ Applies to new conflicts; existing markers stay as they are.
 [Conflict styles](https://git-scm.com/docs/git-config#Documentation/git-config.txt-mergeconflictStyle)
 .
 
-### 📊 Branch Dashboard
+<a id="stale-branches"></a>
+
+### 🕰️ Find Stale Branches
+
+List remote-tracking branches in a Markdown table, oldest commits first.
+Refresh remote refs first with `git fetch --all --prune`; this also removes
+remote-tracking refs for branches already deleted on the server.
 
 <!-- Keep the Git format string intact for copying. -->
 <!-- markdownlint-disable MD013 -->
+
 ```sh
-git for-each-ref --sort=-committerdate \
-  --format='%(align:32)%(refname:short)%(end) %(align:18)%(committerdate:relative)%(end) %(authorname)' \
-  refs/remotes/origin/
+printf '%s\n' '| Branch | Last Commit Age | Author |' '| --- | --- | --- |'
+git for-each-ref --sort=committerdate \
+  --format='| %(refname:short) | %(committerdate:relative) | %(authorname) |' \
+  refs/remotes/
 ```
+
 <!-- markdownlint-enable MD013 -->
 
-**Output:** branch → tip age → author. Newest commits first; no `column`
-dependency.
+**Example Output:**
 
-⚠️ Age = tip commit age. Run `git fetch origin` to refresh refs; `origin/HEAD`
-may appear.
+```markdown
+| Branch                      | Last Commit Age | Author     |
+| --------------------------- | --------------- | ---------- |
+| origin/feature/old-checkout | 6 months ago    | Alex Smith |
+| origin/feature/cart-cleanup | 3 weeks ago     | Sam Jones  |
+| origin/main                 | 2 days ago      | Taylor Lee |
+```
+
+💡 Ages automatically use days, weeks, months, or years. For only `origin`
+branches, replace `refs/remotes/` with `refs/remotes/origin/`.
+Use `--sort=-committerdate` for newest first.
+
+⚠️ Age = tip commit age, not branch creation or last push time. Remote `HEAD`
+aliases may appear. Treat old branches as cleanup candidates; check whether
+their work is merged or still needed before deleting.
 
 📚 [Ref sorting and formatting](https://git-scm.com/docs/git-for-each-ref).
 
